@@ -1,0 +1,24 @@
+<%- include('Partials/header') %>
+
+
+<div class="container">
+  <h1>📁 File Manager</h1>
+
+  <!-- Upload -->
+  <div class="upload-section">
+    <input type="file" id="fileInput">
+    <button id="uploadfff" onclick="uploadFile()">Upload</button>
+  </div>
+  <!-- Current Path -->
+  <div id="path" class="current-path"></div>
+
+  <!-- File List -->
+  <div id="list" class="file-list"></div>
+</div>
+
+<div id="uploads" class="loading"></div>
+<style>
+  
+</style>
+
+<%- include('Partials/footer') %>

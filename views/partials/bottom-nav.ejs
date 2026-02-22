@@ -1,0 +1,22 @@
+<!-- views/partials/bottom-nav.ejs -->
+<nav class="bottom-nav">
+  <a data-url="/login" href="/" class="<%= path === '/' ? 'active' : '' %>">
+    <i class="fa fa-home"></i>
+    <span>Home</span>
+  </a>
+
+  <a href="/games" class="<%= path === '/games' ? 'active' : '' %>">
+    <i class="fa fa-gamepad"></i>
+    <span>Games</span>
+  </a>
+
+  <a href="/wallet" class="<%= path === '/wallet' ? 'active' : '' %>">
+    <i class="fa fa-wallet"></i>
+    <span>Wallet</span>
+  </a>
+
+  <a>
+    <i class="fa fa-user"></i>
+    <span>Profile</span>
+  </a>
+</nav>

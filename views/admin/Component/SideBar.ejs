@@ -1,0 +1,93 @@
+<style>
+  
+.accordion {
+  background: #444;
+  cursor: pointer;
+  padding: 15px 20px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+  display: flex;
+  font-family:  monospace; /* gaming/futuristic feel */
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.accordion:hover {
+  background: #555;
+}
+
+
+.arrow {
+  font-size: 19px;
+  transition: transform 0.3s;
+}
+ .accordion.active .arrow {
+  transform: rotate(180deg);
+}
+
+
+.accordion-content {
+  background: #555;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 0 20px;
+}
+
+.odds {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.odds button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>
+
+
+<div class="sidebar" id="sidebar">
+
+  <div class="side-header">
+    <div class="logo"><a href="/">view</a></div>
+    <div class="nj-btn" onclick="toggleMenu()">X</div>
+  </div>
+
+  <a href="/admin/filemanager">📁 File Manager</a>
+  <a href="/admin/addpost">➕ Add Post</a>
+  <a href="#">Payments</a>
+  <a href="/admin/setting">🔐 Settings</a>
+  <a href="#">Logout</a>
+  
+  <div class="accordion">★ Settings  <span class="arrow">&#9650;</span></div>
+  <div class="accordion-content">
+  <div class="odds">
+    <button>1.70 Over</button>
+    <button>1.92 Under</button>
+  </div>
+</div>
+  <div class="accordion">★ 1st Innings Score  <span class="arrow">&#9650;</span></div>
+  <div class="accordion-content">
+  <div class="odds">
+    <button>1.70 Over</button>
+    <button>1.92 Under</button>
+  </div>
+</div>
+  <div class="accordion">★ 1st Innings Score  <span class="arrow">&#9650;</span></div>
+  <div class="accordion-content">
+  <div class="odds">
+    <button>1.70 Over</button>
+    <button>1.92 Under</button>
+  </div>
+</div>
+  
+</div>

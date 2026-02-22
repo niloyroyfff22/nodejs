@@ -1,0 +1,188 @@
+
+<style>
+  /* Modal */
+/* Modal Scoped CSS */
+.full-screen-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.full-screen-modal .modal-content {
+    background-color: #1e1e1e;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-screen-modal .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.full-screen-modal .modal-header h2 {
+    margin: 0;
+}
+
+.full-screen-modal .back-btn {
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #333;
+}
+
+.full-screen-modal .modal-body {
+    margin-top: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-screen-modal .modal-body input,
+.full-screen-modal .modal-body select {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 15px;
+}
+
+.full-screen-modal .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.full-screen-modal .agent-number,
+.full-screen-modal .notice-bar {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.full-screen-modal .agent-number {
+    background:#2a2a2a;
+}
+
+.full-screen-modal .notice-bar {
+    background:#ff9800;
+    color:#000;
+}
+</style>
+
+<!-- modal full screen -->
+<div id="transactionModal" class="full-screen-modal">
+    <div class="modal-content">
+
+        <!-- ⭐ REPLACED CLOSE WITH BACK BUTTON -->
+        <div class="modal-header">
+            <span class="back-btn" onclick="goBack()">←</span>
+            <h2>Deposit</h2>
+        </div>
+
+        <div class="modal-body">
+            <select id="method" onchange="showAgentNumber()">
+                <option value="">Select</option>
+                <option value="bkash">bKash</option>
+                <option value="nagad">Nagad</option>
+            </select>
+
+            <div class="agent-number" id="agentNumber">
+                Agent Number: <span id="agentNumText"></span>
+            </div>
+
+            <div class="notice-bar" id="noticeBar">
+                Cash Out করতে হলে agent number ব্যবহার করুন।
+            </div>
+
+            <input type="text" id="number" placeholder="আপনার মোবাইল নাম্বার">
+            <input type="number" id="amount" placeholder="৳ Amount" min="1">
+
+            <button class="submit-btn" onclick="submitTransaction()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const modalvv = document.getElementById('transactionModal');
+let modalOpen = false;
+
+const agents = {
+    bkash: '017XXXXXXXX',
+    nagad: '018XXXXXXXX'
+};
+
+function openModalvv(){
+    modalvv.style.display = 'block';
+    modalOpen = true;
+
+    // Push History state so that back button closes modal
+    history.pushState({modal:true}, "", "/nj");
+}
+
+function closeModalvv(){
+    modalvv.style.display = 'none';
+    modalOpen = false;
+}
+
+/* ⭐ New Function -> Works like Android Back Button */
+function goBack(){
+    history.back();   // This triggers popstate
+}
+
+function showAgentNumber(){
+    const method = document.getElementById('method').value;
+    const agentDiv = document.getElementById('agentNumber');
+    const agentNum = document.getElementById('agentNumText');
+
+    if(agents[method]){
+        agentNum.innerText = agents[method];
+        agentDiv.style.display = "block";
+    } else {
+        agentDiv.style.display = "none";
+    }
+}
+
+function submitTransaction(){
+    const method = document.getElementById('method').value;
+    const number = document.getElementById('number').value;
+    const amount = document.getElementById('amount').value;
+
+    if(!method || !number || !amount){
+        alert("সব তথ্য পূরণ করুন");
+        return;
+    }
+
+    alert(`${method.toUpperCase()} - ${amount}৳ Submitted`);
+    closeModal();
+}
+
+/* Close when clicking outside */
+window.onclick = function(e){
+    if(e.target === modalvv) goBack();
+};
+
+/* ⭐ Back Button Handling */
+window.addEventListener("popstate", function (event) {
+    if(modalOpen){
+        closeModalvv(); // Close modal
+    }
+});
+</script>

@@ -1,0 +1,194 @@
+/* =====================
+   ODDS WRAPPER (1xBet)
+===================== */
+.odds-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =====================
+   MARKET GROUP
+===================== */
+.odds-wrapper .market-group {
+  background: #0f1f3d;
+  border-radius: 8px;
+  padding: 10px 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* =====================
+   MARKET TITLE
+===================== */
+.odds-wrapper .market-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #dce6ff;
+  background: linear-gradient(180deg, #1e3a73, #142c52);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =====================
+   ODDS GRID (2 COLUMN)
+===================== */
+.odds-wrapper .odd-row {
+  display: inline-block;
+  width: calc(50% - 12px);
+}
+
+/* =====================
+   ODD BOX
+===================== */
+.odds-wrapper .odd-box {
+  background: #0b1b36;
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+  margin: 8px 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* =====================
+   ODD NAME
+===================== */
+.odds-wrapper .odd-name {
+  display: block;
+  color: #a8b7d9;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+/* =====================
+   ODD BUTTON
+===================== */
+.odds-wrapper .odd-btn {
+  width: 100%;
+  padding: 8px 6px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 14px;
+  background: linear-gradient(180deg, #ffffff, #f0f0f0);
+  color: #0b1b36;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.odds-wrapper .odd-btn:hover {
+  background: #e7efff;
+}
+
+.odds-wrapper .odd-btn:active {
+  transform: scale(0.96);
+}
+
+/* =====================
+   ODDS CHANGE EFFECT
+===================== */
+.odds-wrapper .odds-increase {
+  animation: oddsUp 0.6s ease;
+  background: #22c55e !important;
+  color: #000;
+}
+
+.odds-wrapper .odds-decrease {
+  animation: oddsDown 0.6s ease;
+  background: #ef4444 !important;
+  color: #000;
+}
+
+@keyframes oddsUp {
+  0% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes oddsDown {
+  0% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* =====================
+   LOCKED / SUSPENDED
+===================== */
+.odds-wrapper .odd-btn:disabled {
+  background: #1f2937;
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Lock icon */
+.odds-wrapper .odd-btn:disabled::after {
+  content: "🔒";
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+/* =====================
+   PLACE BET MODAL (1xBet)
+===================== */
+.placebetviewmodal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.75);
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* =====================
+   MODAL CONTENT
+===================== */
+.placebetviewmodal .modal-content {
+  background: linear-gradient(180deg, #1a2f5a, #0f1f3d);
+  padding: 18px;
+  border-radius: 16px 16px 0 0;
+  width: 100%;
+  max-width: 420px;
+  color: #fff;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.6);
+  animation: slideUp 0.25s ease;
+  position: relative;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* =====================
+   CLOSE BUTTON
+===================== */
+.placebetviewmodal .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 26px;
+  cursor: pointer;
+  color: #ff6b6b;
+}
+
+/* =====================
+   MOBILE OPTIMIZATION
+===================== */
+@media (max-width: 480px) {
+
+  .odds-wrapper .odd-box {
+    margin: 6px 4px;
+  }
+
+  .odds-wrapper .odd-btn {
+    font-size: 13px;
+    padding: 7px 6px;
+  }
+
+  .odds-wrapper .market-title {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}

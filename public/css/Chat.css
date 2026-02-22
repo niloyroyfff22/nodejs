@@ -1,0 +1,285 @@
+.active-bar {
+  display: flex;
+  gap: 14px;
+  padding: 10px;
+  overflow-x: auto;
+  background: #1c1e21;
+}
+
+.active-user {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.active-user img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.active-user .name {
+  color: #fff;
+  font-size: 12px;
+  margin-top: 4px;
+  max-width: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active-user .online-dot {
+  position: absolute;
+  right: 4px;
+  bottom: 20px;
+  width: 12px;
+  height: 12px;
+  background: #31a24c;
+  border: 2px solid #1c1e21;
+  border-radius: 50%;
+}
+
+/* ===============================
+   ONLINE / RECENT CHAT LIST
+================================ */
+
+.chat-box {
+  margin: 15px;
+  padding: 15px;
+  border-radius: 14px;
+}
+
+/* list container */
+.active-users ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+/* each user item */
+.active-users li {
+  background: #0b0b0b;
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* hover */
+.active-users li:hover {
+  background: #141414;
+  transform: scale(1.01);
+}
+
+/* hide self */
+.self {
+  display: none;
+}
+
+/* user top row */
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* username */
+.user-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* online dot */
+.online-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* last message */
+.last-text {
+  font-size: 12px;
+  color: #b5b5b5;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* unread */
+.bold {
+  font-weight: 700;
+  color: #fff;
+}
+
+.unread-count {
+  background: #ef4444;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* ===============================
+   CHAT MODAL
+================================ */
+
+#chatModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 1001;
+  flex-direction: column;
+}
+
+/* header */
+.chat-header {
+  background: linear-gradient(90deg,#0d4a1a,#0f7a34);
+  color: #fff;
+  padding: 0px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chatUser {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+#chatStatus {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* ===============================
+   MESSAGE AREA
+================================ */
+
+#chatMessages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 64px;
+  background: #f4f6f8;
+}
+
+/* message bubble */
+.msg {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-size: 14px;
+  word-wrap: break-word;
+  animation: fadeIn 0.15s ease;
+}
+
+/* my message */
+.me {
+  background: #0084ff;
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+/* other message */
+.other {
+  background: #e5e7eb;
+  color: #111;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+/* image message */
+.chat-image {
+  max-width: 180px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ===============================
+   CHAT INPUT
+================================ */
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid #e5e7eb;
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
+  left: 0;
+  width: 100%;
+  background: #fff;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+}
+
+.chat-input input:focus {
+  border-color: #0084ff;
+}
+
+/* send button */
+.chat-input button {
+  background: #0084ff;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.chat-input button:hover {
+  background: #006edc;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.callc{
+  font-size: 25px;
+  
+}
+.chatclose{
+  font-size: 40px;
+}
+.calladd{
+  gap: 30px;
+  
+}

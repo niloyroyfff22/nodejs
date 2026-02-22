@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FB Fuzzy Search</title>
+<style>
+body { font-family: Arial; padding: 30px; }
+input { width: 320px; padding: 10px; }
+.tabs button { margin: 4px; padding: 6px 12px; }
+.active { background:#1877f2; color:#fff; }
+</style>
+</head>
+<body>
+
+<h2>🔍 Facebook Style Fuzzy Search</h2>
+
+<input id="search" placeholder="Type anything..." />
+
+<div class="tabs">
+  <button data-type="all" class="active">All</button>
+  <button data-type="people">People</button>
+  <button data-type="pages">Pages</button>
+  <button data-type="groups">Groups</button>
+  <button data-type="posts">Posts</button>
+</div>
+
+<div id="result"></div>
+<style>
+  .friend-btn {
+  padding: 6px 14px;
+  border: 1px solid #1877f2;
+  background: #1877f2;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.friend-btn.loading {
+  background: #e4e6eb;
+  border-color: #ccc;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.friend-btn.sent {
+  background: #e4e6eb;
+  border-color: #ccc;
+  color: #050505;
+  cursor: default;
+}
+  
+</style>
+
+<button id="friendBtn"
+        data-user-id="USER_ID_HERE"
+        class="friend-btn">
+  Add Friend
+</button>
+<style>
+/* =========================
+   LIST ITEM
+========================= */
+.request-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  transition: opacity 0.2s ease;
+}
+
+.request-name {
+  font-size: 14px;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+.delete-btn {
+  position: relative; /* 🔥 REQUIRED */
+  padding: 6px 12px;
+  background: #e4e6eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* loading state */
+.delete-btn.loading {
+  color: transparent;
+  pointer-events: none;
+}
+
+/* spinner */
+.delete-btn.loading::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 2px solid #cfd2d6;
+  border-top-color: #1877f2;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 0.8s linear infinite;
+}
+
+/* fade out on delete */
+.request-item.removing {
+  opacity: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+
+
+<style>
+/* =========================
+   LIST ITEM
+========================= */
+.request-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  transition: opacity 0.2s ease;
+}
+
+.request-name {
+  font-size: 14px;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+.delete-btn {
+  position: relative;
+  padding: 6px 12px;
+  background: #e4e6eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  min-width: 64px; /* 🔥 layout stable */
+}
+
+/* loading state */
+.delete-btn.loading {
+  color: transparent;
+  pointer-events: none;
+}
+
+/* spinner */
+.delete-btn.loading::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 2px solid #cfd2d6;
+  border-top-color: #1877f2;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: spin 0.8s linear infinite;
+}
+
+/* fade out on delete */
+.request-item.removing {
+  opacity: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+</style>
+
+<div id="requests"></div>
+
+<script>
+// =========================
+// STATE
+// =========================
+const requestState = new Map();
+
+// =========================
+// MOCK DATA
+// =========================
+const serverData = [
+  { id: "u1", name: "Nikhil Roy" },
+  { id: "u2", name: "Rahman Hossain" }
+];
+
+// =========================
+// RENDER
+// =========================
+const container = document.getElementById("requests");
+
+serverData.forEach(user => {
+  requestState.set(user.id, user);
+  renderRequest(user);
+});
+
+function renderRequest(user) {
+  const item = document.createElement("div");
+  item.className = "request-item";
+
+  const name = document.createElement("span");
+  name.className = "request-name";
+  name.textContent = user.name;
+
+  const btn = document.createElement("button");
+  btn.className = "delete-btn";
+  btn.textContent = "Delete";
+
+  btn.onclick = () => handleDelete(user.id, btn, item);
+
+  item.append(name, btn);
+  container.appendChild(item);
+}
+
+// =========================
+// DELETE HANDLER
+// =========================
+async function handleDelete(userId, btn, item) {
+  if (!requestState.has(userId)) return;
+
+  btn.classList.add("loading");
+  btn.disabled = true;
+
+  try {
+    await fakeApiDelete();
+    requestState.delete(userId);
+
+    item.classList.add("removing");
+    setTimeout(() => item.remove(), 200);
+
+  } catch {
+    btn.classList.remove("loading");
+    btn.disabled = false;
+    alert("Delete failed");
+  }
+}
+
+// =========================
+// MOCK API
+// =========================
+function fakeApiDelete() {
+  return new Promise(res => setTimeout(res, 800));
+}
+</script>
+
+
+
+<div id="requests"></div>
+
+<script>
+// =========================
+// STATE
+// =========================
+const requestState = new Map();
+
+// =========================
+// MOCK SERVER DATA
+// =========================
+const serverData = [
+  { id: "u1", name: "Nikhil Roy" },
+  { id: "u2", name: "Rahman Hossain" }
+];
+
+// =========================
+// RENDER
+// =========================
+const container = document.getElementById("requests");
+
+serverData.forEach(user => {
+  requestState.set(user.id, user);
+  renderRequest(user);
+});
+
+function renderRequest(user) {
+  const item = document.createElement("div");
+  item.className = "request-item";
+
+  const name = document.createElement("span");
+  name.className = "request-name";
+  name.textContent = user.name;
+
+  const btn = document.createElement("button");
+  btn.className = "delete-btn";
+  btn.textContent = "Delete";
+
+  btn.onclick = () => handleDelete(user.id, btn, item);
+
+  item.append(name, btn);
+  container.appendChild(item);
+}
+
+// =========================
+// DELETE HANDLER
+// =========================
+async function handleDelete(userId, btn, item) {
+  if (!requestState.has(userId)) return;
+
+  // loading start
+  btn.classList.add("loading");
+  btn.disabled = true;
+
+  try {
+    const res = await fakeApiDelete(userId);
+    if (!res.ok) throw new Error();
+
+    requestState.delete(userId);
+
+    // smooth remove
+    item.classList.add("removing");
+    setTimeout(() => item.remove(), 200);
+
+  } catch (e) {
+    btn.classList.remove("loading");
+    btn.disabled = false;
+    alert("Delete failed");
+  }
+}
+
+// =========================
+// MOCK API
+// =========================
+function fakeApiDelete() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve({ ok: true }), 800);
+  });
+}
+</script>
+<script>
+const btn = document.getElementById("friendBtn");
+
+btn.addEventListener("click", async () => {
+  const userId = btn.dataset.userId;
+
+  // already sent হলে কিছু করবে না
+  if (btn.classList.contains("sent")) return;
+
+  // 🔄 loading state
+  btn.classList.add("loading");
+  btn.innerText = "Sending...";
+  btn.disabled = true;
+
+/*  try {
+    const res = await fetch(`/friend-request/send/${userId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      // ✅ success
+      btn.classList.remove("loading");
+      btn.classList.add("sent");
+      btn.innerText = "Request Sent";
+    } else {
+      throw new Error(data.msg);
+    }
+
+  } catch (err) {
+    // ❌ error হলে আগের অবস্থায় ফিরবে
+    btn.classList.remove("loading");
+    btn.disabled = false;
+    btn.innerText = "Add Friend";
+    alert(err.message || "Something went wrong");
+  }*/
+});
+</script>
+
+<script>
+let timer;
+let type = "all";
+
+document.querySelectorAll(".tabs button").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".tabs button")
+      .forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    type = btn.dataset.type;
+    trigger();
+  };
+});
+
+document.getElementById("search").oninput = () => {
+  clearTimeout(timer);
+  timer = setTimeout(trigger, 150);
+};
+
+function trigger() {
+  const q = search.value.trim();
+  if (q.length < 2) return result.innerHTML = "";
+
+  fetch(`/search?q=${q}&type=${type}`)
+    .then(r => r.json())
+    .then(show);
+}
+
+function show(data) {
+  result.innerHTML = "";
+  for (const k in data) {
+    if (!data[k].length) continue;
+    result.innerHTML += `<h3>${k.toUpperCase()}</h3><ul>${
+      data[k].map(i =>
+        `<li>${i.name || i.title || i.content}</li>`
+      ).join("")
+    }</ul>`;
+  }
+}
+</script>
+
+</body>
+</html>

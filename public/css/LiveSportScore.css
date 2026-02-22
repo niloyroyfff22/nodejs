@@ -1,0 +1,188 @@
+/* =====================
+   MATCH WRAPPER
+===================== */
+.match-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background:
+    linear-gradient(180deg, #081a12, #020a06),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+}
+
+/* =====================
+   MATCH CARD
+===================== */
+.match-wrapper .matchscore {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #123c2b, #0b2a1e);
+  padding: 14px;
+  color: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.55);
+}
+
+/* =====================
+   HEADER
+===================== */
+.match-wrapper .match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.match-wrapper .match-header .title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #d4f5e6;
+}
+
+.match-wrapper .match-header .status.live {
+  padding: 4px 10px;
+  background: linear-gradient(180deg, #ff3b3b, #c91d1d);
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(255,0,0,0.6);
+}
+
+/* =====================
+   TEAMS
+===================== */
+.match-wrapper .teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.match-wrapper .team {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.match-wrapper .team .name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e6fff4;
+  text-align: center;
+}
+
+/* =====================
+   SERVE INDICATOR (ONLY ACTIVE PLAYER)
+===================== */
+.match-wrapper .team .serve {
+  font-size: 18px;
+  margin: 5px 0 0;
+  opacity: 1;
+  display: inline-block;
+  animation: matchPulse 1s infinite;
+}
+
+/* ONLY SERVING PLAYER */
+.match-wrapper .team .serve.off {
+  opacity: 0;
+}
+
+/* Pulse animation */
+@keyframes matchPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* =====================
+   SCORE
+===================== */
+.match-wrapper .team .score {
+  font-size: 30px;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.match-wrapper .team .points {
+  font-size: 14px;
+  margin-top: 4px;
+  background: rgba(255,255,255,0.15);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.match-wrapper .vs {
+  font-size: 18px;
+  font-weight: 900;
+  color: #9ef0c8;
+}
+
+/* =====================
+   SET SCORES
+===================== */
+.match-wrapper .newset {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.match-wrapper .set-box {
+  background: rgba(0,0,0,0.35);
+  padding: 6px 12px;
+  border-radius: 8px;
+  min-width: 60px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.match-wrapper .set-name {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-bottom: 3px;
+}
+
+.match-wrapper .set-score {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* =====================
+   SCORE FLASH
+===================== */
+.match-wrapper .flash {
+  animation: matchFlashScore 1.2s ease;
+}
+
+@keyframes matchFlashScore {
+  0% {
+    background: #22c55e;
+    transform: scale(1.15);
+    color: #000;
+  }
+  100% {
+    background: transparent;
+    transform: scale(1);
+    color: inherit;
+  }
+}
+
+/* =====================
+   MOBILE OPTIMIZATION
+===================== */
+@media (max-width: 420px) {
+  .match-wrapper .matchscore {
+    padding: 12px;
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js --ignore sessions.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@ngrok/ngrok": "^1.7.0",
+    "chalk": "^4.1.2",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "firebase-admin": "^13.6.0",
+    "multer": "^2.0.2",
+    "node-telegram-bot-api": "^0.66.0",
+    "redis": "^5.10.0",
+    "session-file-store": "^1.5.0",
+    "socket.io": "^4.8.1",
+    "sql.js": "^1.13.0",
+    "web-push": "^3.6.7",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

@@ -1,0 +1,174 @@
+<%- include('header') %>
+
+<style>
+  /* RESET */
+
+
+/* FORM CARD */
+.lcard{
+  display: flex;
+  justify-content: center;
+  padding: 35px 20px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 420px;
+  background: #0f172a;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  color: #fff;
+}
+
+/* TITLE */
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* GROUP */
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+/* INPUT */
+.input-container {
+  position: relative;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a335a;
+  background: #020617;
+  color: #fff;
+  font-size: 15px;
+}
+
+.input-container input:focus {
+  outline: none;
+  border-color: #00ffcc;
+}
+
+/* ICON */
+.icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* PASSWORD TOGGLE */
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* BUTTON */
+.btnn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #00ffcc, #00bfa6);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btnn:hover {
+  opacity: 0.9;
+}
+
+/* ERROR */
+.error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #ff6b6b;
+}
+
+/* LINK */
+.signup-link {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: #00ffcc;
+  text-decoration: none;
+}
+
+/* DESKTOP IMPROVEMENT */
+@media (min-width: 768px) {
+  .login-form {
+    padding: 32px;
+  }
+
+  .form-title {
+    font-size: 26px;
+  }
+}
+  
+</style>
+<div class="lcard">
+            <form class="login-form" id="loginForrm" method="post" action="/signup">
+                <h2 class="form-title">Sign Up</h2>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-container">
+                        <input type="text" id="username" name="user" placeholder="Username" >
+                        <span class="icon">👤</span>
+                    </div>
+                    <% if (errors.user) { %>
+  <div class="error"><%= errors.user %></div>
+  <% } %>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-container">
+                        <input type="password" name="pass" id="password" placeholder="Password" >
+                        <button type="button" class="password-toggle" id="togglePassword">👁️</button>
+                    </div>
+                    <% if (errors.pass) { %>
+      <div class="error">
+        
+        <%= errors.pass %>
+      </div>
+      
+    <% } %>
+                </div>
+                
+                
+                <button type="submit" class="btnn">Sign Up</button>
+                
+                <div class="signup-link">
+                    Already Account <a href="/login">Login</a>
+                </div>
+            </form>
+
+
+</div>
+<%- include('footer') %>

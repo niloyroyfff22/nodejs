@@ -1,0 +1,174 @@
+/* =====================
+   MATCH CARD (1xBet Style)
+===================== */
+.match {
+  background: linear-gradient(180deg, #1a2f5a, #0f1f3d);
+  padding: 14px;
+  margin: 10px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  color: #fff;
+}
+
+/* =====================
+   MATCH TITLE
+===================== */
+.match-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #eaf2ff;
+  text-decoration: none;
+}
+
+/* =====================
+   TEAM ROW
+===================== */
+.match .team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.match .team span {
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+  color: #e5ecff;
+}
+
+/* =====================
+   MAIN ODDS BUTTON
+===================== */
+.match .btn {
+  background: linear-gradient(180deg, #ffffff, #f0f0f0);
+  color: #0b1b36;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 800;
+  font-size: 14px;
+  min-width: 62px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.match .btn:hover {
+  background: #e7efff;
+}
+
+.match .btn:active {
+  transform: scale(0.96);
+}
+
+/* =====================
+   ODDS BADGE (INLINE)
+===================== */
+.match .oddd {
+  background: #ffcc00;
+  color: #000;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+/* =====================
+   EXTRA ODDS CONTAINER
+===================== */
+.teamm {
+  margin-top: 10px;
+  padding: 8px 6px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar */
+.teamm::-webkit-scrollbar {
+  display: none;
+}
+
+/* =====================
+   EXTRA ODDS BUTTON
+===================== */
+.btnn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: linear-gradient(180deg, #1e3a73, #132b52);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.btnn:hover {
+  background: linear-gradient(180deg, #244a91, #173567);
+}
+
+.btnn:active {
+  transform: scale(0.96);
+}
+
+/* =====================
+   BLINK (ODDS CHANGE)
+===================== */
+.blink {
+  animation: blinkAnim 0.7s ease;
+}
+
+@keyframes blinkAnim {
+  0% {
+    background: #22c55e;
+    color: #000;
+  }
+  100% {
+    background: transparent;
+    color: inherit;
+  }
+}
+
+/* =====================
+   MOBILE OPTIMIZATION
+===================== */
+@media (max-width: 480px) {
+
+  .match {
+    margin: 8px 6px;
+    padding: 12px;
+  }
+
+  .match-title {
+    font-size: 13px;
+  }
+
+  .match .team span {
+    font-size: 12px;
+  }
+
+  .match .btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .btnn {
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,39 @@
+ /* public/style.css */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: #linear-gradient(180deg,#155226,#0f3d18);
+  padding: 10px 0;
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:0 8px 25px rgba(0,0,0,0.18);
+}
+
+.bottom-nav a {
+  color: #aaa;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.bottom-nav a.active {
+  color: #00ff88;
+  font-weight: bold;
+}
+
+.bottom-nav a i {
+  display: block;
+  font-size: 18px;
+}
+
+
+
+
+#loadingIndicator {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}

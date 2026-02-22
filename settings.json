@@ -1,0 +1,19 @@
+* settings.json
+
+{
+  ...
+  "fontSize": "10px",
+  "tabSize": 2,
+  "formatter": "prettier",
+
+  "[python]": {
+    "fontSize": "12px",
+    "tabSize": 4,
+    "formatter": "mypy"
+  },
+  "[javascript]": {
+    "formatter": "beautify"
+  }
+  ...
+}
+

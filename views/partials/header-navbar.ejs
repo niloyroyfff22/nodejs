@@ -1,0 +1,35 @@
+<div class="topbar-wrapper">
+  <div class="topbar">
+    <div class="brand">
+      <span class="hamb" id="hamb"><div></div></span>
+      <a class="logo-text" href="/">Nikhil</a>
+    </div>
+
+    <div class="actions">
+      <% if (session.user) { %>
+<a class="btn login" href="/logout">LogOut</a>
+<button class="btn login" onclick="openModalvv()">Deposit</button>
+  
+   <% } else{%>
+      <a class="btn login" href="/login">Login</a>
+      <a class="btn register" href="/signup">Register</a>
+   <% } %>
+    </div>
+  </div>
+</div>
+<div class="notice-bar">
+  <div class="notice-icon">🔊</div>
+  <div class="notice-text">
+    <span>Wellcome To Man99.live, সর্বদা বেস্ট সার্ভিস পেতে আমাদের সাথেই থাকুন!</span>
+  </div>
+</div>
+
+<script>
+const text = document.querySelector('.notice-text span');
+
+text.addEventListener('animationiteration', () => {
+  text.style.animation = 'none';
+  text.offsetHeight; 
+  text.style.animation = '';
+});
+</script>

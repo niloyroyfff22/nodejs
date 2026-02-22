@@ -1,0 +1,38 @@
+<%- include('header') %>
+
+
+<div class="active-bar" id="activeBar"></div>
+
+<div class="chat-box">
+  <div class="active-users">
+    
+    <ul id="activeList"></ul>
+  </div>
+</div>
+
+
+<!-- CHAT MODAL -->
+<div id="chatModal">
+  <div class="chat-header">
+  <div>
+    <div id="chatUser"></div>
+    <small id="chatStatus"></small>
+  </div>
+    
+  <div class="calladd">
+  <span class="callc" onclick="callbtn()">📞</span>
+  <span class="chatclose" onclick="closeChat()">&times</span>
+  </div>
+</div>
+
+  <div id="chatMessages"></div>
+
+  <div class="chat-input">
+    <input id="msgInput" placeholder="মেসেজ লিখুন…" />
+    <button onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+
+
+<%- include('footer') %>

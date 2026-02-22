@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Phaser Game with Splash Fullscreen</title>
+<script src="/js/eruda.js"></script>
+<script>
+  eruda.init(); // Console চালু হবে
+</script>
+
+<script src="/phaser.min.js"></script>
+<style>
+  html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#1d213f; }
+</style>
+
+</style>
+</head>
+<body>
+
+
+
+<script>
+class SplashScene extends Phaser.Scene {
+    constructor() { super({ key: 'SplashScene' }); }
+
+    preload() {
+        const { width, height } = this.cameras.main;
+
+        // Progress bar
+        this.progressBar = this.add.graphics();
+        this.progressBox = this.add.graphics();
+        this.progressBox.fillStyle(0x222222, 0.8);
+        this.progressBox.fillRect(width/4-10, height/2-25, width/2+20, 50);
+
+        this.percentText = this.add.text(width/2, height/2, '0%', { font:'20px Arial', fill:'#fff' }).setOrigin(0.5);
+
+        // Load assets (example)
+        this.load.audio('bgMusic', 'sound/background.mp3');
+        this.load.image('soundOn', 'https://img.icons8.com/color/48/000000/speaker.png');
+        this.load.image('soundOff', 'https://img.icons8.com/color/48/000000/mute.png');
+    }
+
+    create() {
+        const { width, height } = this.cameras.main;
+
+        // Simulate 5 second progress
+        let elapsed = 0;
+        const duration = 5000; // 5 sec
+        this.time.addEvent({
+            delay: 16,
+            loop: true,
+            callback: () => {
+                elapsed += 16;
+                let value = Phaser.Math.Clamp(elapsed / duration, 0, 1);
+                this.progressBar.clear();
+                this.progressBar.fillStyle(0xffd700, 1);
+                this.progressBar.fillRect(width/4, height/2-15, (width/2)*value, 30);
+                this.percentText.setText(Math.round(value*100)+'%');
+
+                if(value>=1){
+                    this.percentText.destroy();
+                    this.progressBar.destroy();
+                    this.progressBox.destroy();
+                    this.scene.start('MainScene');
+                }
+            }
+        });
+    }
+}
+
+class MainScene extends Phaser.Scene {
+    constructor() { super({ key: 'MainScene' }); }
+
+    create() {
+        const { width, height } = this.scale;
+
+        // Background music
+        this.bgMusic = this.sound.add('bgMusic', { loop: true, volume: 0.5 });
+
+        // Tap to Start
+        const startText = this.add.text(width/2, height/2, 'Tap to Start', {
+            font:'32px Arial', fill:'#ffd700', backgroundColor:'#000'
+        }).setOrigin(0.5).setPadding(20).setInteractive();
+
+        // UI container (Initially hidden)
+        this.gameUI = this.add.container(0, 0);
+        this.gameUI.setVisible(false);
+
+
+        // -----------------------
+        // SOUND BUTTON
+        // -----------------------
+        this.soundOn = true;
+
+        this.soundButton = this.add.text(width-20, 20, 'Sound On', {
+            font:'24px Arial', fill:'#ffffff', backgroundColor:'#000'
+        })
+        .setPadding(10)
+        .setOrigin(1,0)
+        .setInteractive();
+
+        this.gameUI.add(this.soundButton);
+
+        // ➤ SOUND ON/OFF CLICK EVENT
+        this.soundButton.on('pointerdown', () => {
+            this.soundOn = !this.soundOn;
+
+            if (this.soundOn) {
+                this.bgMusic.play();
+                this.soundButton.setText("Sound On");
+            } else {
+                this.bgMusic.stop();
+                this.soundButton.setText("Sound Off");
+            }
+        });
+
+
+
+        // Settings Button
+    this.settingsButton = this.add.text(width-20, 60, 'Settings ⚙️', {
+        font:'24px Arial', fill:'#ffffff', backgroundColor:'#000000'
+    }).setPadding(10).setInteractive().setOrigin(1,0);
+this.gameUI.add(this.settingsButton);
+    // Modal group
+    this.modalGroup = this.add.group();
+    this.settingsButton.on('pointerdown', () => {
+        // Overlay background
+        const overlay = this.add.rectangle(0, 0, width, height, 0x000000, 0.7)
+            .setOrigin(0,0)
+            .setInteractive();
+        // Modal box
+        const boxWidth = width*0.8;
+        const boxHeight = height*0.5;
+        const modalBox = this.add.rectangle(width/2, height/2, boxWidth, boxHeight, 0xffffff, 1)
+            .setStrokeStyle(2, 0x000000);
+        const modalText = this.add.text(width/2, height/2, 'সেটিংস\n\n🔊 সাউন্ড অন/অফ', {
+            font:'28px Arial', fill:'#000000', align:'center'
+        }).setOrigin(0.5);
+
+        // Close button
+        const closeButton = this.add.text(width/2, height/2 + boxHeight/2 - 40, 'বন্ধ করুন', {
+            font:'24px Arial', fill:'#ffffff', backgroundColor:'#000000'
+        }).setOrigin(0.5).setPadding(10).setInteractive();
+
+        closeButton.on('pointerdown', () => {
+            this.modalGroup.clear(true, true);
+        });
+
+        // Add to modal group
+        this.modalGroup.addMultiple([overlay, modalBox, modalText, closeButton]);
+    });
+
+
+
+        // -----------------------
+        // MOVING CIRCLE
+        // -----------------------
+        const graphics = this.add.graphics({ fillStyle: { color: 0xffd700 } });
+        const circle = new Phaser.Geom.Circle(100, height/2, 30);
+        graphics.fillCircleShape(circle);
+        this.gameUI.add(graphics);
+
+        this.tweens.add({
+            targets: circle,
+            x: width-100,
+            duration: 4000,
+            yoyo: true,
+            repeat: -1,
+            onUpdate: () => {
+                graphics.clear();
+                graphics.fillStyle(0xffd700, 1);
+                graphics.fillCircle(circle.x, circle.y, circle.radius);
+            }
+        });
+
+
+
+        // -----------------------
+        // TAP TO START → SHOW UI
+        // -----------------------
+        startText.on('pointerdown', () => {
+            if (!this.scale.isFullscreen){ this.scale.startFullscreen();
+              
+            }
+
+            
+
+            startText.destroy();
+
+            this.gameUI.setVisible(true);
+        });
+
+
+        // -----------------------
+        // RESIZE FIX
+        // -----------------------
+        this.scale.on('resize', (gameSize) => {
+            this.soundButton.setPosition(gameSize.width-20, 20);
+            this.settingsButton.setPosition(gameSize.width-20, 60);
+        });
+    }
+}
+
+const config = {
+    type: Phaser.AUTO,
+    
+    width: window.innerWidth,
+    height: window.innerHeight,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    backgroundColor: '#1d213f',
+    scene: [SplashScene, MainScene]
+};
+
+const game = new Phaser.Game(config);
+</script>
+
+</body>
+</html>

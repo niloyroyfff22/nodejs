@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mobile Responsive Admin Panel</title>
+<link rel="stylesheet" href="/admincss/style.css">
+<link rel="stylesheet" href="/filemanager.css">
+
+<!-- Dev-specific scripts -->
+    <script src="/js/eruda.js"></script>
+    <script>
+      eruda.init(); // Console চালু হবে
+    </script>
+
+<!-- Main Script -->
+  <script src="/adminjs/script.js" defer></script>
+  <script src="/adminjs/loader.js" defer></script>
+  <script src="/adminjs/ShowAlert.js" defer></script>
+  <script src="/adminjs/quill.js" defer></script>
+
+
+
+
+</head>
+
+<body>
+  <div class="topbar">
+  <span class="menu-btn" onclick="toggleMenu()">☰</span>
+  <a href="/admin" class="topurl">Admin Panel</a>
+</div>
+
+<%- include('../Component/SideBar') %>

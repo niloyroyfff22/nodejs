@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Messenger Style Chat List</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: green;
+        color: #fff;
+    }
+
+    .container {
+        max-width: 420px;
+        margin: auto;
+        padding: 10px;
+    }
+
+    /* Stories / Active users */
+    .stories {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding: 10px 0;
+    }
+
+    .story {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .story img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 2px solid #2ecc71;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    /* Chat list */
+    .chat {
+        display: flex;
+        align-items: center;
+        padding: 12px 6px;
+        border-bottom: 1px solid #222;
+    }
+
+    .chat img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 12px;
+    }
+
+    .chat-content {
+        flex: 1;
+    }
+
+    .chat-name {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .chat-msg {
+        font-size: 13px;
+        color: #aaa;
+        margin-top: 3px;
+    }
+
+    .time {
+        font-size: 12px;
+        color: #00c853;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Active users -->
+    <div class="stories">
+        <div class="story">
+            <img src="https://via.placeholder.com/55">
+            Your note
+        </div>
+        <div class="story">
+            <img src="https://via.placeholder.com/55">
+            Noboni
+        </div>
+        <div class="story">
+            <img src="https://via.placeholder.com/55">
+            Prama
+        </div>
+    </div>
+
+    <!-- Chat list -->
+    <div class="chat">
+        <img src="https://via.placeholder.com/50">
+        <div class="chat-content">
+            <div class="chat-name">Pollob Roy</div>
+            <div class="chat-msg">Pollob sent an attachment.</div>
+        </div>
+        <div class="time">5h</div>
+    </div>
+
+    <div class="chat">
+        <img src="https://via.placeholder.com/50">
+        <div class="chat-content">
+            <div class="chat-name">Tumisha Roy</div>
+            <div class="chat-msg">You: Hi Tumisha</div>
+        </div>
+    </div>
+
+    <div class="chat">
+        <img src="https://via.placeholder.com/50">
+        <div class="chat-content">
+            <div class="chat-name">Meta AI</div>
+            <div class="chat-msg">😊 তোমার প্রজেক্টের জন্য কি কি লাগবে…</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

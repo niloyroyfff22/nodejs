@@ -1,0 +1,107 @@
+<%- include('header') %>
+<style>
+  /* GRAPH */
+  .graph::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:2px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #38bdf8 0 6px,
+      transparent 6px 14px
+    );
+  animation: runwayMove 1s linear infinite;
+}
+
+@keyframes runwayMove{
+  from{ background-position:0 0; }
+  to{ background-position:40px 0; }
+}
+.graph{
+  height:180px;
+  background:linear-gradient(180deg,#020617,#0b1020);
+  border-bottom:1px solid #1e293b;
+  position:relative;
+  overflow:hidden;
+}
+canvas{
+  position:absolute;
+  inset:0;
+}
+.plane{
+  position:absolute;
+  font-size:28px;
+}
+.multiplier{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  font-size:42px;
+  font-weight:bold;
+}
+.crash{
+  color:#ef4444;
+}
+.timer{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  font-size:20px;
+  color:#facc15;
+}
+</style>
+
+
+<div class="graph">
+  <canvas id="graph"></canvas>
+  <div class="plane" id="plane">✈</div>
+  <div class="multiplier" id="multi">WAIT</div>
+  <div class="timer" id="timer">10</div>
+</div>
+
+
+
+
+<script>
+  const canvas = document.getElementById("graph");
+const ctx = canvas.getContext("2d");
+const multi = document.getElementById("multi");
+const plane = document.getElementById("plane");
+const timerEl = document.getElementById("timer");
+
+
+canvas.width = window.innerWidth;
+canvas.height = 180;
+
+let dotOffset = 0;
+
+function drawBottomDots(){
+  ctx.clearRect(0, canvas.height - 6, canvas.width, 6);
+
+  ctx.strokeStyle = "#38bdf8";
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 10]);
+  ctx.lineDashOffset = -dotOffset;
+
+  ctx.beginPath();
+  ctx.moveTo(0, canvas.height - 2);
+  ctx.lineTo(canvas.width, canvas.height - 2);
+  ctx.stroke();
+
+  dotOffset += 2;
+  requestAnimationFrame(drawBottomDots);
+}
+
+drawBottomDots();
+
+
+
+  
+</script>
+
+
+<%- include('footer') %>

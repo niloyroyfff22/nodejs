@@ -1,0 +1,105 @@
+.placebetmodal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
+.placebetmodal-content {
+  position: relative;
+  background: linear-gradient(180deg, #0f5a2a, #083d1c);
+  width: 100%;
+  max-width: 420px;
+  padding: 20px 18px 22px;
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -15px 40px rgba(0,0,0,0.6);
+  animation: slideUp 0.25s ease;
+  color: #fff;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.placebetclose {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 28px;
+  color: #ff6b6b;
+  cursor: pointer;
+}
+
+.placebetmodal h3 {
+  margin: 10px 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bet-info {
+  background: rgba(0,0,0,0.25);
+  padding: 10px;
+  border-radius: 12px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.bet-info p {
+  margin: 4px 0;
+}
+
+.bet-info span {
+  font-weight: 600;
+  color: #ffd369;
+}
+
+.bet-input {
+  margin-top: 14px;
+  text-align: left;
+}
+
+.bet-input label {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.bet-input input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #0b2b15;
+  color: #fff;
+  outline: none;
+}
+
+.bet-input input:focus {
+  box-shadow: 0 0 0 2px #1faa59;
+}
+
+.placebetmodal .btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1faa59, #15803d);
+  color: #fff;
+  border: none;
+}
+
+.placebetmodal .btn:active {
+  transform: scale(0.97);
+}

@@ -1,0 +1,74 @@
+<style>
+ 
+
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #e5e7eb;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: #1e293b;
+  color: #38bdf8;
+}
+
+.nav-item span {
+  flex: 1;
+}
+
+.logout {
+  margin-top: 20px;
+  color: #fca5a5;
+}
+
+.logout:hover {
+  background: #3f1d1d;
+  color: #fecaca;
+}
+  
+</style>
+
+
+<div class="navbar-main" id="sidenav">
+<div class="navbar">
+  <div class="sidenav-header">
+      <div class="titlelogo">MAN99</div>
+      <div class="closenav" id="closenav">&times;</div>
+    </div>
+ 
+ 
+
+
+    <a href="/admin/filemanager" class="nav-item">
+      📁 <span>File Manager</span>
+    </a>
+
+    <a href="/admin/addpost" class="nav-item">
+      ➕ <span>Add Post</span>
+    </a>
+
+    <a href="#" class="nav-item">
+      💳 <span>Payments</span>
+    </a>
+
+    <a href="/admin/setting" class="nav-item">
+      🔐 <span>Settings</span>
+    </a>
+    <a href="/Chat" class="nav-item">
+      🔐 <span>Chat</span>
+    </a>
+
+    <a href="/logout" class="nav-item logout">
+      🚪 <span>Logout</span>
+    </a>
+
+  
+</div>
+</div>

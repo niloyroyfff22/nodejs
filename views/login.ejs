@@ -1,0 +1,46 @@
+<%- include('header') %>
+
+<div class="login-wrapper">
+  <form class="login-card" action="/login" method="POST">
+    <h2 class="login-title">Login to your account</h2>
+    <p class="login-sub"></p>
+
+    <!-- Username -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <div class="input-box">
+        <input type="text" name="user" id="username" placeholder="Enter Username"
+               value="<%= oldInput.user || '' %>">
+        <span class="icon">👤</span>
+      </div>
+      <% if (errors.user) { %>
+        <div class="error"><%= errors.user %></div>
+      <% } %>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="input-box">
+        <input type="password" name="pass" id="password" placeholder="Enter Password"
+               value="<%= oldInput.pass || '' %>">
+        <button type="button" class="toggle-pass" id="togglePassword">👁️</button>
+      </div>
+      <% if (errors.pass) { %>
+        <div class="error"><%= errors.pass %></div>
+      <% } %>
+    </div>
+
+    <div class="links">
+      <a href="#" class="forgot">Forgot Password?</a>
+    </div>
+
+    <button type="submit" class="login-btn">Login</button>
+
+    <div class="signup">
+      Create new account <a href="/signup">Sign Up</a>
+    </div>
+  </form>
+</div>
+
+<%- include('footer') %>

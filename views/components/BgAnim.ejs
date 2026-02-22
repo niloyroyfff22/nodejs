@@ -1,0 +1,50 @@
+<style>
+  /* 🌌 Background Animation Layer */
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  pointer-events: none; /* 🔥 VERY IMPORTANT */
+  overflow: hidden;
+}
+
+/* 🎉 Confetti */
+.confetti span {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  background: hsl(var(--hue), 90%, 60%);
+  animation: fall linear infinite;
+}
+
+.confetti span:nth-child(1){left:10%;--hue:20;animation-duration:4s}
+.confetti span:nth-child(2){left:20%;--hue:60;animation-duration:5s}
+.confetti span:nth-child(3){left:30%;--hue:100;animation-duration:4.5s}
+.confetti span:nth-child(4){left:40%;--hue:140;animation-duration:5.5s}
+.confetti span:nth-child(5){left:50%;--hue:180;animation-duration:4s}
+.confetti span:nth-child(6){left:60%;--hue:220;animation-duration:6s}
+.confetti span:nth-child(7){left:70%;--hue:260;animation-duration:4.8s}
+.confetti span:nth-child(8){left:80%;--hue:300;animation-duration:5.2s}
+.confetti span:nth-child(9){left:90%;--hue:340;animation-duration:4.3s}
+.confetti span:nth-child(10){left:95%;--hue:10;animation-duration:6s}
+
+@keyframes fall {
+  from { transform: translateY(0) rotate(0deg); opacity: 1; }
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* 🌐 Website Content */
+.site-content {
+  position: relative;
+  z-index: 5; /* always above animation */
+  padding: 40px;
+}
+</style>
+  <!-- Background Animation Layer -->
+  <div class="bg-animation">
+    <div class="confetti">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>

@@ -1,0 +1,149 @@
+<%- include('header') %>
+
+<audio id="plane-crash" src="/sound/plane-crash.mp3" preload="auto"></audio>
+
+<%- include("partials/GameSplash") %>
+
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚀 CRASH</h1>
+            <p>Bet Smart, Cash Out Big, Win Professional</p>
+        </div>
+
+        
+
+        
+        
+
+        <!-- Main Game Layout -->
+        <div class="game-layout">
+            <!-- Left Column - Main Game -->
+            <div class="main-game">
+                <!-- Multiplier Display -->
+                <div class="multiplier-container" id="multiplierContainer">
+                    <div class="status" id="status">Game Loading...</div>
+                    <div class="multiplier" id="multiplier">1.00x</div>
+                    <div class="game-info">
+                        <div class="info-item">
+                            <div class="info-label">SPACE BAR</div>
+                            <div class="info-value">Quick Cashout</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">NUMBERS 1-6</div>
+                            <div class="info-value">Quick Bets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Betting Panel -->
+                <div class="betting-panel">
+                    <div class="panel-header">
+                        <h3 id="taka">BETTING PANEL</h3>
+                        
+                        
+                        <div class="balance" id="balance">৳10,000</div>
+                    </div>
+                    
+                    <div class="bet-form">
+                        <div class="form-group">
+                            <label for="betAmount">BET AMOUNT (৳)</label>
+                            <input type="number" id="betAmount" placeholder="Min: ৳10" min="10" value="100">
+                
+                <!-- Quick bets will be inserted here by JavaScript -->
+                           <div class="quick-bets" id="quickBets">
+                                
+                            </div> 
+                            
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button class="btn btn-bet" id="placeBetBtn">PLACE BET</button>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Sound Control Section -->
+<button id="soundToggle">🔊</button>
+
+ 
+
+            <!-- Right Column - Sidebar -->
+            <div class="sidebar">
+                <!-- Players Widget -->
+                <div class="players-widget">
+                    <div class="widget-header">
+                        <h3>ACTIVE PLAYERS</h3>
+                        <span class="info-value" id="playersCount">0</span>
+                    </div>
+                    <div class="players-list" id="playersList">
+                        <div class="player-item">
+                            <div class="player-info">
+                                <div class="player-avatar">?</div>
+                                <span>No active players</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Widget -->
+                <div class="history-widget">
+                    <div class="widget-header">
+                        <h3>RECENT HISTORY</h3>
+                        <span class="info-value">Last 10</span>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <div class="history-item medium">
+                            <div class="history-multiplier">2.15x</div>
+                            <div class="history-time">15:30</div>
+                        </div>
+                        <div class="history-item high">
+                            <div class="history-multiplier">8.76x</div>
+                            <div class="history-time">15:28</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+        </div>
+        
+        
+        
+        
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-value" id="gameId">1</div>
+                <div class="stat-label">Current Game</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalPlayers">0</div>
+                <div class="stat-label">Active Players</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalBets">৳0</div>
+                <div class="stat-label">Total Bets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="highestMultiplier">1.00x</div>
+                <div class="stat-label">Current Multiplier</div>
+            </div>
+        </div>
+        
+    </div>
+
+
+<!-- Toast Container -->
+<div id="toastContainer"></div>
+    
+    <script src="crashSound.js" defer></script>
+    <script src="Crash.js" defer></script>
+
+
+<%- include('footer') %>

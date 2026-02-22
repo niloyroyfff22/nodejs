@@ -1,0 +1,125 @@
+<style>
+ 
+  .splash-screengg {
+    position: fixed; top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.8);
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    color:#fff;
+    font-family:sans-serif;
+    z-index:999;
+  }
+
+  .loader-bar {
+    width: 300px;
+    height: 20px;
+    border:1px solid #fff;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow:hidden;
+  }
+
+  .loader-fill {
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#2a8f43,#1f7a34);
+    transition: width 0.2s ease;
+  }
+
+  .hidden { display:none; }
+</style>
+
+<div id="networkStatus" style="position:fixed;top:50px;right:10px;padding:8px 12px;border-radius:6px;background:#333;color:#fff;font-weight:bold;z-index:9999;">Checking...</div>
+<script>
+  
+  const statusDiv = document.getElementById("networkStatus");
+
+let lastPing = 0;
+let pingTimer = null;
+
+function startSSE() {
+    const ev = new EventSource("/netstream");
+
+    ev.onmessage = () => {
+        const now = Date.now();
+
+        // First ping directly Online
+        if (lastPing === 0) {
+            lastPing = now;
+            return show("Online", "green");
+        }
+
+        const gap = now - lastPing; // time since last message
+        lastPing = now;
+
+        // Speed Classification
+        if (gap < 600) {
+           // show("Fast", "green");
+        } else if (gap < 2000) {
+          //  show("Slow", "orange");
+        } else {
+            show("Slow", "red");
+        }
+
+        // Clear previous offline detector
+        if (pingTimer) clearTimeout(pingTimer);
+
+        // If no ping within 4s → offline
+        pingTimer = setTimeout(() => {
+            show("No Internet", "#900");
+            ev.close();
+            setTimeout(startSSE, 3000); // Auto reconnect
+        }, 4000);
+    };
+
+    ev.onerror = () => {
+        show("No Internet", "#900");
+        ev.close();
+        setTimeout(startSSE, 3000);
+    };
+}
+
+function show(text, color) {
+    statusDiv.textContent = text;
+    statusDiv.style.background = color;
+}
+
+startSSE();
+</script>
+
+
+
+<div id="splash" class="splash-screengg">
+    <h1>Crash</h1>
+    <div class="loader-bar">
+        <div id="loaderFill" class="loader-fill"></div>
+    </div>
+    <p id="progressText">0%</p>
+</div>
+
+
+<script>
+const loaderFill = document.getElementById('loaderFill');
+const progressText = document.getElementById('progressText');
+const splash = document.getElementById('splash');
+
+
+const evtSource = new EventSource('/ping');
+
+evtSource.onmessage = function(e) {
+    const progress = parseInt(e.data);
+    loaderFill.style.width = progress + '%';
+    progressText.textContent = progress + '%';
+
+    if(progress >= 100) {
+        splash.classList.add('hidden');
+        
+        evtSource.close();
+    }
+}
+
+evtSource.onerror = function() {
+    progressText.textContent = "Network Error!";
+}
+</script>

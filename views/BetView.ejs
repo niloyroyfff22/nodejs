@@ -1,0 +1,27 @@
+<%- include('header') %>
+
+<div class="match-wrapper">
+  <div id="matchscore" class="mmatchscore">Loading ...</div>
+</div>
+
+<input type="hidden" id="hiddenId" value="<%= matchid %>" />
+
+<div id="oddsdata"></div>
+
+
+<!-- Place Bet Modal -->
+<div id="placeBetModal" class="placebetviewmodal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h3>Place Your Bet</h3>
+    <p id="betInfo"></p>
+    <input type="number" id="betStake" placeholder="Enter Stake" />
+    <button id="confirmBet">Confirm Bet</button>
+  </div>
+</div>
+
+
+
+
+<script src="/BetView.js"></script>
+<%- include('footer') %>

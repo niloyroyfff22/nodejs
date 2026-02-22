@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Live Dashboard</title>
+<style>
+body {
+  font-family: Arial;
+  background: #f0f2f5;
+  padding: 30px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 200px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+
+.value {
+  font-size: 28px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<h2>📊 Admin Live Dashboard</h2>
+
+<div class="card">
+  Users
+  <div id="users" class="value">0</div>
+</div>
+
+<div class="card">
+  Active Users
+  <div id="active" class="value">0</div>
+</div>
+
+<div class="card">
+  Orders
+  <div id="orders" class="value">0</div>
+</div>
+
+<script>
+const es = new EventSource("/rr");
+
+es.onmessage = e => {
+  const data = JSON.parse(e.data);
+
+  users.textContent = data.users;
+  active.textContent = data.active;
+  orders.textContent = data.orders;
+};
+
+es.onerror = () => {
+  console.log("SSE disconnected, retrying...");
+};
+</script>
+
+</body>
+</html>
