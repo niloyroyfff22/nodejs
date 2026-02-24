@@ -1,7 +1,7 @@
 # Command Palette
 
 AgeZliVXHwv27TJsER/VqA==
-ggg 
+ggg eee
 
 The **Command Palette** is a powerful feature available in most modern code editors, including Acode. It allows you to quickly access and execute a wide range of commands without navigating through menus. By using simple keyboard shortcuts, you can search for, and run, commands that perform various tasks in the editor, making your workflow faster and more efficient.
 
