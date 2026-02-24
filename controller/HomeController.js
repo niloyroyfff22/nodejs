@@ -36,7 +36,7 @@ exports.HomePage = async (req, res) => {
     }
 
     // Execute shell command to get Node.js architecture
-    const { stdout } = await execPromise('pwd');
+    const { stdout } = await execPromise('node -v');
     //console.log('Output:', stdout.trim());
     //console.log(chalk.red.bold('❌ Error!', stdout.trim()));
 
