@@ -5,7 +5,7 @@ export function App() {
         <>
             <main>
                 <Router>
-                    <Home path="/" />
+                    <Home path="/spa" />
 
                     <NotFound default />
                 </Router>
