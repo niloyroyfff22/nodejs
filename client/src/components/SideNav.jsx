@@ -1,5 +1,6 @@
 import { useEffect } from "preact/hooks";
 import { route } from "preact-router";
+import "./SideNav.css";
 
 export default function SideNav({ open, onClose }) {
     // Prevent body scroll when open

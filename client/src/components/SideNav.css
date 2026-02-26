@@ -1,0 +1,82 @@
+
+/* ===============================
+   SIDENAV OVERLAY
+================================= */
+
+.navbar-main {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1002;
+    display: flex;
+}
+
+/* SIDEBAR PANEL */
+.navbar-main .navbar {
+    width: 260px;
+    background: #073615;
+    color: white;
+    height: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* Slide animation */
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* HEADER */
+.navbar-main .sidenav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.navbar-main .titlelogo {
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.navbar-main .closenav {
+    font-size: 32px;
+    cursor: pointer;
+}
+
+/* NAV ITEMS */
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: #e5e7eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.nav-item:hover {
+    background: #1e293b;
+    color: #38bdf8;
+}
+
+.nav-item span {
+    flex: 1;
+}
+
+.logout {
+    margin-top: 20px;
+    color: #fca5a5;
+}
+
+.logout:hover {
+    background: #3f1d1d;
+    color: #fecaca;
+}
