@@ -92,6 +92,15 @@ app.use(express.static(path.join(__dirname, 'public'))); // Static files
    Routes
 ========================= */
 app.use('/admin', AdminRoutes);
+
+
+app.use('/spa', express.static('client/dist'));
+
+app.get(/^\/spa(\/.*)?$/, (req, res) => {
+  res.sendFile(path.resolve('client/dist/index.html'));
+});
+
+
 app.use('/', webRoutes);
 
 /* =====================
