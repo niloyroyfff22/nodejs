@@ -34,7 +34,7 @@ export default function Topbar({ user, onDeposit }) {
               <div></div>
             </span>
 
-            <a class="logo-text" href="/">
+            <a class="logo-text" href="/spa">
               Nikhil
             </a>
           </div>
