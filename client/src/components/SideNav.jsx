@@ -30,6 +30,24 @@ export default function SideNav({ open, onClose }) {
                 >
                     📁 <span>Login page</span>
                 </div>
+                <div
+                    class="nav-item"
+                    onClick={() => {
+                        onClose();
+                        route("/spa/deposit");
+                    }}
+                >
+                    📁 <span>Deposit</span>
+                </div>
+                <div
+                    class="nav-item"
+                    onClick={() => {
+                        onClose();
+                        route("/spa/signup");
+                    }}
+                >
+                    📁 <span>Sign Up</span>
+                </div>
             </div>
         </div>
     );

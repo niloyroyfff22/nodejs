@@ -20,6 +20,7 @@ const { show, AlertComponent } = useAlert();
         <button onClick={() => show("Login successful", "Success")}>
         Show Alert
       </button>
+      {AlertComponent}
     </>
     );
 }

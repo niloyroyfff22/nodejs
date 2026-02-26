@@ -25,6 +25,7 @@ const socketHandler = require('./socket/socketHandler'); // Crash socket
 
 // Routes
 const webRoutes = require('./routes/webRoutes');
+const ApiRoutes = require('./routes/ApiRoutes');
 const AdminRoutes = require('./routes/AdminRoutes');
 
 
@@ -92,6 +93,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // Static files
    Routes
 ========================= */
 app.use('/admin', AdminRoutes);
+app.use('/api', ApiRoutes);
 
 
 app.use('/spa', express.static('client/dist'));

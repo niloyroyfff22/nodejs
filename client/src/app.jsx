@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "preact/hooks";
 import { useAlert } from "./hooks/useAlert";
 import TopBar from "./components/TopBar";
 import Home from "./pages/Home";
+import Signup from "./pages/Signup";
 import DepositModal from './pages/Deposit';
 export function App() {
   const { show, AlertComponent } = useAlert();
@@ -13,7 +14,7 @@ export function App() {
     alert("Deposit modal open");
   };
   
-  const hideTopBarRoutes = ['/spa/deposit', '/spa/login'];
+  const hideTopBarRoutes = ['/spa/deposit', '/spa/login', '/spa/signup'];
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   const handleRouteChange = (e) => {
@@ -25,11 +26,12 @@ export function App() {
   
     return (
         <>
-          {AlertComponent}
+          
          {showTopBar && <TopBar user={fakeUser} onDeposit={openModal} />}
             <main>
                 <Router onChange={handleRouteChange}>
                     <Home path="/spa" />
+                    <Signup path="/spa/signup" />
                     <DepositModal path="/spa/deposit" />
 
                     <NotFound default />
