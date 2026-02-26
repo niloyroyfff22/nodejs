@@ -1,9 +1,11 @@
 import { Router } from "preact-router";
 import { useState, useEffect, useRef } from "preact/hooks";
+import { useAlert } from "./hooks/useAlert";
 import TopBar from "./components/TopBar";
 import Home from "./pages/Home";
 import DepositModal from './pages/Deposit';
 export function App() {
+  const { show, AlertComponent } = useAlert();
   
   const fakeUser = null; // remove if using real auth
 
@@ -23,6 +25,7 @@ export function App() {
   
     return (
         <>
+          {AlertComponent}
          {showTopBar && <TopBar user={fakeUser} onDeposit={openModal} />}
             <main>
                 <Router onChange={handleRouteChange}>
