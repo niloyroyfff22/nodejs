@@ -58,7 +58,7 @@ export default function Signup() {
       }
 
       // success redirect
-      window.location.href = "/login";
+     // window.location.href = "/login";
 
     } catch (err) {
       setErrors({ general: "Server error" });

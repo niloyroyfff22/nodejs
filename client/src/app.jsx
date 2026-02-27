@@ -17,6 +17,8 @@ export function App() {
   const hideTopBarRoutes = ['/spa/deposit', '/spa/login', '/spa/signup'];
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
+console.log(currentPath);
+
   const handleRouteChange = (e) => {
     setCurrentPath(e.url);
   };

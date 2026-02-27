@@ -1,6 +1,7 @@
 // server.js
 const express = require('express');
 require('dotenv').config();
+const cookieParser = require("cookie-parser");
 
 const http = require('http');
 const path = require('path');
@@ -64,6 +65,7 @@ const sessionMiddleware = session({
 
 app.use(sessionMiddleware);
 app.use(flash());
+app.use(cookieParser()); // ✅ cookie access
 
 // Make flash & session variables available in all views
 app.use((req, res, next) => {
