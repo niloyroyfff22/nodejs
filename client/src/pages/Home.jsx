@@ -2,8 +2,12 @@ import Loading from '../components/Loading';
 import SplashScreen from '../components/SplashScreen';
 import { useState, useEffect } from 'preact/hooks';
 import { useAlert } from "../hooks/useAlert";
+import { useTheme } from "../hooks/useTheme";
+
 
 export default function Home() {
+  const { theme, toggleTheme } = useTheme()
+  
   const [loading, setLoading] = useState(false);
   const [splashDone, setSplashDone] = useState(
     sessionStorage.getItem("splashDone") === "true"
@@ -42,6 +46,9 @@ export default function Home() {
 
       <button onClick={() => show("Login successful", "Success")}>
         Show Alert
+      </button>
+      <button onClick={toggleTheme}>
+        Switch to {theme === "light" ? "Dark" : "Light"}
       </button>
 
       {AlertComponent}
