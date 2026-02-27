@@ -52,11 +52,11 @@ export default function Topbar({ user, onDeposit }) {
               </>
             ) : (
               <>
-                <a class="btn login" href="/login">
+                <a class="btn login" href="/spa/login">
                   Login
                 </a>
 
-                <a class="btn register" href="/signup">
+                <a class="btn register" href="/spa/signup">
                   Register
                 </a>
               </>

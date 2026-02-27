@@ -4,6 +4,7 @@ import { useAlert } from "./hooks/useAlert";
 import TopBar from "./components/TopBar";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import DepositModal from './pages/Deposit';
 export function App() {
   const { show, AlertComponent } = useAlert();
@@ -34,6 +35,7 @@ console.log(currentPath);
                 <Router onChange={handleRouteChange}>
                     <Home path="/spa" />
                     <Signup path="/spa/signup" />
+                    <Login path="/spa/login" />
                     <DepositModal path="/spa/deposit" />
 
                     <NotFound default />

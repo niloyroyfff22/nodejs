@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-
+import "./Signup.css";
 export default function Signup() {
   const [form, setForm] = useState({
     user: "",
